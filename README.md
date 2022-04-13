@@ -18,24 +18,23 @@ Dependent packages:
 
 ## Usage
 ### Input
-1. Log file path.
-2. POI.
+1. Log file root path.
+2. Contextual window size
+3. Vector dimension 
 ### Command
-Execute the following command from the project home directory ``DEPCOMM``:<br/>
+Execute the following command from the project home directory ``DeepDR``:<br/>
 
-	./core/Start "log-file-path" "poi" 
+	./start "log-path" "window" "dimension" 
 
-For example, to run depcomm on the unzipped example log file, first put the unzipped example log file into the folder ``input`` in the project home directory ``DEPCOMM``, then execute the following command:
+For example, to run DeepDR on the unzipped example log file, first put the unzipped example log file into the folder ``input`` in the project home directory ``DeepDR``, then execute the following command:
 
-    ./core/Start "./input/leak_data.txt" "10.10.103.10:38772->159.226.251.11:25"
+    ./start "./input" "8" "1195"
 
 ### Data
-
 Due to the limit of Github, we can't upload the collected extreme large log files.
 The folder example contains a small log that can be used for demo.
-For this case, the POI event is a suspicious network connection.
-For the DARPA Attack used in evaluation, here is the [github link](https://github.com/darpa-i2o/Transparent-Computing). 
-You can follow their instructions to download data.  
+For this case, the contextual window size is 8, and the preprocessed event's vector dimension is 1195.
+
 ### Output
 DepComm will output several different files to the folder ``output`` in the project home directory ``DEPCOMM``.
 1. Some dot files that are named as ``community_*.dot``. They are the graphs for each community. 
