@@ -36,10 +36,5 @@ The folder example contains a small log that can be used for demo.
 For this case, the contextual window size is 8, and the preprocessed event's vector dimension is 1195.
 
 ### Output
-DepComm will output several different files to the folder ``output`` in the project home directory ``DEPCOMM``.
-1. Some dot files that are named as ``community_*.dot``. They are the graphs for each community. 
-2. A dot file that is named as ``summary_graph.dot``. It is the summary graph, where the node denotes community and the edge denotes the data flow direction among communities.
-3. A txt file that is named as ``summary.txt``. It contains the master process, time span and prioritized InfoPaths for each community.
-4. Another txt file that is named as ``community.txt``. It records nodes attributes for each community (pid and pidname for process node, path and filename for file node, IP and Port for network node).  
-
-Note that the dot files can be visualized by [Graphviz](https://github.com/xflr6/graphviz).
+DeepDR will output recall rate and precise rate, and one .txt file to the folder ``output`` in the project home directory ``DeepDR``.
+The .txt file is named as ``attackstory.txt``. It is the recovered attack campaign.
