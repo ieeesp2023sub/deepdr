@@ -11,7 +11,7 @@ DeePDR aims at detecting fine-grained attack activities and linking them as the 
 Python Version：2.7  
 
 Dependent packages:
-> tensorflow==1.10.0
+> tensorflow==1.10.0  
 > networkx==2.2  
 > numpy==1.15.1  
 > scipy==1.0  
