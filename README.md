@@ -1,36 +1,24 @@
-# depcomm
+# DeepDR
 ## Introduction
-![Workflow of DepComm](https://github.com/ieeesp2021sub/depcomm/blob/main/DepComm%20overview.png)
-Causality analysis on system auditing data has emerged as an important solution for attack investigation.
-Given a POI (Point-Of-Interest) event (e.g. an alert fired on a  suspicious file creation), causality analysis constructs a dependency graph, in which nodes represent system entities (e.g. processes and files) and edges represent dependencies among entities, to reveal the attack sequence.
-However, causality analysis often produce a huge graph.
-we propose DEPCOMM, a graph summarization approach that generates a summary graph from a dependency graph by partitioning a large graph into process-centric communities and presenting summaries for each community. Specifically, each community contains a set of
-intimate processes that cooperate with each other to accomplish
-certain system activities (e.g., file compression), and the resources
-(e.g., files) accessed by these processes. To further reduce the
-community size, DEPCOMM identifies repetitive events inside
-each community and perform compression on both the nodes
-and the edges. Finally, for each community, DEPCOMM identifies
-InfoPaths that represent information flows from the inputs of the
-community to the outputs of the community, and priorities these
-InfoPaths to rank the InfoPaths that are more likely to represent
-attack-related information flows at the top.
+![Workflow of DeepDR](https://github.com/ieeesp2023sub/deepdr/blob/main/deepdr_overview.PNG)
+DeePDR aims at detecting fine-grained attack activities and linking them as the attack campaign. This figure shows the architecture of DEEPDR, which consists of four phases: (a) audit log pre-processing; (b) event representation learning; (c) attack event detection; and (d) attack campaign recovery. These phases include five components: (1) Log Parser (LP), (2) Event Correlation Network (ECN), (3) Event Representation Network (ERN), (4) Attack Event Detector (AED) and (5) Attack Campaign Recovery (ACR). 
+
+Audit Log Pre-processing. LP first standardizes the format of various types of log events, uniformly vectorizes these standardized events, and arranges these processed events as a sequence in chronological order. Then, for the following event representation learning and attack event detection, LP extracts relevant event pairs, irrelevant event pairs and contextual windows of each event by moving a sliding window of a specific size on the sequence.
+
+Event Representation Learning. First, ECN inputs the extracted event pairs by LP, and learns correlations (i.e., attackrelevant correlation, benign-relevant correlation and irrelevant correlation) of event pairs based on events’ labels. Then, ERN builds relevant window (i.e., attack-relevant window and benign-relevant window) for each event through the recognized correlations by ECN. Next, ERN learns each event’s representation based on the built relevant window and events’ labels. Moreover, AED learns the representation distributions of attack events and benign events respectively.
+
+Attack Event Detection. Given an unlabeled event and its contextual window, ECN first recognizes the correlations between the event and its contextual events, and then builds the attack-relevant window and benign-relevant window based on the correlations. Then, ERN represents the event both as a potential attack event and as a potential benign event using the event’s attack-relevant window and benign-relevant window respectively. Finally, AED determines the event’s label according to the compliance of the event’s representations with the previously learned representation distributions.
+
+Attack Campaign Recovery. ACR recovers an attack campaign based on the correlations of the detected attack events given by ECN. Those detected events that cannot be correlated to any other events are filtered as false positives.
 
 ## Requirements
 Python Version：2.7  
 
-Dependent packages:  
+Dependent packages:
+> tensorflow==1.10.0
 > networkx==2.2  
 > numpy==1.15.1  
 > scipy==1.0  
-> pydot==1.4.1  
-> python-louvain==0.14  
-> igraph==0.7  
-> pydot==1.4.1  
-> gensim==3.8.1  
-> pympler==0.7  
-> scikit-fuzzy==0.4.2  
-> sklearn==0.19.1  
 
 ## Usage
 ### Input
