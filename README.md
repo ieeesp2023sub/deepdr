@@ -24,11 +24,11 @@ Dependent packages:
 ### Command
 Execute the following command from the project home directory ``DeepDR``:<br/>
 
-	./start "log-path" "window" "dimension" 
+	./start.py "log-path" "window" "dimension" 
 
 For example, to run DeepDR on the unzipped example log file, first put the unzipped example log file into the folder ``input`` in the project home directory ``DeepDR``, then execute the following command:
 
-    ./start "./input" "8" "1195"
+    ./start.py "./input" "8" "1195"
 
 ### Data
 Due to the limit of Github, we can't upload the collected extreme large log files.
